@@ -7,6 +7,17 @@
     <groupId>com.timer</groupId>
     <artifactId>TimeMeasurment</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+
+
+    <repositories>
+        <repository>
+            <id>javaopencvbook</id>
+            <url>https://raw.github.com/JavaOpenCVBook/code/maven2/</url>
+        </repository>
+    </repositories>
+
+
     <dependencies>
         <dependency>
             <groupId>pl.edu.uj</groupId>
@@ -23,6 +34,17 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.javaopencvbook</groupId>-->
+            <!--<artifactId>opencvjar</artifactId>-->
+            <!--<version>3.0.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.javaopencvbook</groupId>-->
+            <!--<artifactId>opencvjar-runtime</artifactId>-->
+            <!--<version>3.0.0</version>-->
+            <!--<classifier>natives-windows-x86</classifier>-->
+        <!--</dependency>-->
     </dependencies>
 
 </project>

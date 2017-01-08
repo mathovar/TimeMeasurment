@@ -2,6 +2,13 @@ import marvin.image.MarvinImage;
 import marvin.io.MarvinImageIO;
 import marvin.plugin.MarvinImagePlugin;
 import marvin.util.MarvinPluginLoader;
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+
+import org.opencv.core.Size;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 import pl.edu.uj.JImageStream.api.core.Filter;
 import pl.edu.uj.JImageStream.collectors.BufferedImageCollector;
 import pl.edu.uj.JImageStream.filters.color.*;
@@ -73,9 +80,24 @@ public class Main {
         ImageIO.write(image.getBufferedImage(), "png", new File(result));
     }
 
+    public static void openCVGauss(){
+        try {
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+
+            Mat source = Imgcodecs.imread("lena.png",
+                    Imgcodecs.CV_LOAD_IMAGE_COLOR);
+
+            Mat destination = new Mat(source.rows(),source.cols(),source.type());
+            Imgproc.GaussianBlur(source, destination,new Size(45,45), 0);
+            Imgcodecs.imwrite("Gaussian45.png", destination);
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
     public static void main(String[] args) throws IOException {
 
-        Main main = new Main();
         StreamableImage streamableImage = new StreamableImage(new File(loader.getResource("").getPath() + "lena.png"));
         String sourcePath = loader.getResource("").getPath() + "lena.png";
 
@@ -134,8 +156,16 @@ public class Main {
 
         marvinFilter("org.marvinproject.image.color.emboss.jar", sourcePath, "marvin-color.emboss.png");
 
+
+
+        openCVGauss();
+
+
+
     }
 
 
 
 }
+
+
